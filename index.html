@@ -4,11 +4,40 @@
 <head> 
 	<title>RE404 Project2 Madadd Competition</title> 
 	<h1>Madadd Competition</h1>
+
 	<script> 
-		var i=1;
+		var i=0;
 		var grade=0;
 		var num1 = Math.round(Math.random()*10);
 		var num2 = Math.round(Math.random()*10);
+		var today=new Date();
+		var today0=new Date();
+
+		var h=today.getHours();
+		var m=today.getMinutes();
+		var s=today.getSeconds();
+		var ms=today.getMilliseconds();
+		var temp=0;
+		var temp0=0;
+		setInterval(myTimer, 10);
+		function myTimer() {
+
+			if (i>0) 
+			{	
+				today=new Date();
+				temp=today.getTime();
+				
+				today.setTime(temp-temp0);
+				
+				h=today.getHours();
+				m=today.getMinutes();
+				s=today.getSeconds();
+				ms=Math.round((today.getMilliseconds())/10);
+				document.getElementById("timer").innerHTML = m+":"+s+":"+ms;
+				//document.getElementById("timer").innerHTML = temp+" "+temp0;
+
+			}
+		}
 		function mysubmit() { 
 			i = i+1;
 
@@ -16,8 +45,8 @@
 			{
 				grade=grade+1;
 			}
-			document.getElementById("myform").reset();
-			if (i>3)
+			document.getElementById("answer").value="";
+			if (i>100)
 			{
 				showresult();
 			}
@@ -26,16 +55,20 @@
 			document.getElementById("questionnum").innerHTML = "Question No." + i;
 			document.getElementById("question").innerHTML = num1 + "+" + num2 + "=";
 			document.getElementById("grade").innerHTML = "Grade:" + grade;
+			document.getElementById("answer").focus();
 		} 
 
 		function showresult() { 
 			document.write("<h1>Madadd Competition</h1>");
 			document.write("<b>Your Result</b>");
-			document.write("<p><b>Grade:" + grade + "</b></P>");
-			document.write("<p><b>Time used:</b></P>");
+			document.write("<p><b>Grade: " + grade + "</b></P>");
+			document.write("<p><b>Time used: " + m+":"+s+":"+ms + "</b></P>");
 		}
 
 		function mystart() { 
+			i++;
+			today0= new Date();
+			temp0=today0.getTime();
 			document.getElementById("questionnum").innerHTML = "Question No." + i;
 			document.getElementById("question").innerHTML = num1 + "+" + num2 + "=";
 			document.getElementById("grade").innerHTML = "Grade:" + grade;
@@ -43,8 +76,14 @@
 			element.setAttribute("hidden", "hidden");
 			element = document.getElementById("answer");		
 			element.removeAttribute("hidden");
+			element.focus();
 			element = document.getElementById("submit");		
 			element.removeAttribute("hidden");
+		}
+		function search(event) {
+    			if(event.keyCode  == 13) {
+       			mysubmit();        
+  			}
 		}
 
 	</script> 
@@ -53,15 +92,16 @@
 <body> 
 	
 	<!--  -->
+ 
 	
-	<form id="myform">
 		<p id="questionnum"></p>
-		<p id="question"></p>
-		<input type="button" autofocus id="start" value="Start" onclick="mystart()">
-		<input type="text" id="answer" hidden>
-		<input type="button" id="submit" autofocus value="Submit" onclick="mysubmit()" hidden>
+		<p id="question" style="font-size: 300%;"></p>
+		<input type="button" style="height:200px; width:200px;font-size: 300%;" autofocus id="start" value="Start" onclick="mystart()">
+		<input type="text" id="answer" hidden onkeydown="search(event)">
+		<input type="button" id="submit" value="Submit" onclick="mysubmit()" hidden>
 		<p id="grade"></p>
-	</form>
+		<p id="timer"></p>
+	
 
 
 </body> 
