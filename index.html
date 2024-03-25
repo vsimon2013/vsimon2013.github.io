@@ -1,7 +1,69 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
-</html>
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+	<title>RE404 Project2 Madadd Competition</title> 
+	<h1>Madadd Competition</h1>
+	<script> 
+		var i=1;
+		var grade=0;
+		var num1 = Math.round(Math.random()*10);
+		var num2 = Math.round(Math.random()*10);
+		function mysubmit() { 
+			i = i+1;
+
+			if (document.getElementById("answer").value == num1+num2 )
+			{
+				grade=grade+1;
+			}
+			document.getElementById("myform").reset();
+			if (i>3)
+			{
+				showresult();
+			}
+			num1 = Math.round(Math.random()*10);
+			num2 = Math.round(Math.random()*10);
+			document.getElementById("questionnum").innerHTML = "Question No." + i;
+			document.getElementById("question").innerHTML = num1 + "+" + num2 + "=";
+			document.getElementById("grade").innerHTML = "Grade:" + grade;
+		} 
+
+		function showresult() { 
+			document.write("<h1>Madadd Competition</h1>");
+			document.write("<b>Your Result</b>");
+			document.write("<p><b>Grade:" + grade + "</b></P>");
+			document.write("<p><b>Time used:</b></P>");
+		}
+
+		function mystart() { 
+			document.getElementById("questionnum").innerHTML = "Question No." + i;
+			document.getElementById("question").innerHTML = num1 + "+" + num2 + "=";
+			document.getElementById("grade").innerHTML = "Grade:" + grade;
+			element = document.getElementById("start");		
+			element.setAttribute("hidden", "hidden");
+			element = document.getElementById("answer");		
+			element.removeAttribute("hidden");
+			element = document.getElementById("submit");		
+			element.removeAttribute("hidden");
+		}
+
+	</script> 
+</head> 
+	
+<body> 
+	
+	<!--  -->
+	
+	<form id="myform">
+		<p id="questionnum"></p>
+		<p id="question"></p>
+		<input type="button" autofocus id="start" value="Start" onclick="mystart()">
+		<input type="text" id="answer" hidden>
+		<input type="button" id="submit" autofocus value="Submit" onclick="mysubmit()" hidden>
+		<p id="grade"></p>
+	</form>
+
+
+</body> 
+
+</html> 
