@@ -34,7 +34,7 @@
 				m=today.getMinutes();
 				s=today.getSeconds();
 				ms=Math.round((today.getMilliseconds())/10);
-				document.getElementById("timer").innerHTML = m+":"+s+":"+ms;
+				document.getElementById("timer").innerHTML ="Timer: "+ m+":"+s+":"+ms;
 				//document.getElementById("timer").innerHTML = temp+" "+temp0;
 
 			}
@@ -55,7 +55,7 @@
 			num2 = Math.round(Math.random()*10);
 			document.getElementById("questionnum").innerHTML = "Question No." + i;
 			document.getElementById("question").innerHTML = num1 + "+" + num2 + "=";
-			document.getElementById("grade").innerHTML = "Grade:" + grade;
+			document.getElementById("grade").innerHTML = "Score: " + grade;
 			document.getElementById("answer").focus();
 		} 
 
@@ -72,7 +72,7 @@
 			temp0=today0.getTime();
 			document.getElementById("questionnum").innerHTML = "Question No." + i;
 			document.getElementById("question").innerHTML = num1 + "+" + num2 + "=";
-			document.getElementById("grade").innerHTML = "Grade:" + grade;
+			document.getElementById("grade").innerHTML = "Score: " + grade;
 			element = document.getElementById("start");		
 			element.setAttribute("hidden", "hidden");
 			element = document.getElementById("answer");		
