@@ -1,0 +1,124 @@
+<!DOCTYPE html> 
+<html> 
+
+<head>
+	<center> 
+	<title>RE404 Project2 Madadd Competition</title> 
+	<h1>Madadd Competition</h1>
+	<p><b>Ver0.1 Created for RE-404 Mechatronics Lab</b> (<a href="https://photos.google.com/share/AF1QipOq4vbp65zGmuxzWZeIfRm8cp9xj-H36CkC59QRwuKNwm1PqM29J8j9EUkNpZkcYw?key=YVBNZV9ZeFJMeVZFbVM3c2xacmFFZWl4bzdmUVdn">DEMO</a>)</p>
+	</center>
+
+	<script> 
+		var i=0;
+		var grade=0;
+		var num1 = Math.round(Math.random()*5);
+		var num2 = Math.round(Math.random()*5);
+		var today=new Date();
+		var today0=new Date();
+
+		var h=today.getHours();
+		var m=today.getMinutes();
+		var s=today.getSeconds();
+		var ms=today.getMilliseconds();
+		var temp=0;
+		var temp0=0;
+		setInterval(myTimer, 10);
+		function myTimer() {
+
+			if (i>0) 
+			{	
+				today=new Date();
+				temp=today.getTime();
+				
+				today.setTime(temp-temp0);
+				
+				h=today.getHours();
+				m=today.getMinutes();
+				s=today.getSeconds();
+				ms=Math.round((today.getMilliseconds())/10);
+				document.getElementById("timer").innerHTML ="Timer: "+ m+":"+s+":"+ms;
+				//document.getElementById("timer").innerHTML = temp+" "+temp0;
+
+			}
+		}
+		function mysubmit() { 
+			i = i+1;
+
+			if (document.getElementById("answer").value == num1+num2 )
+			{
+				grade=grade+1;
+			}
+			document.getElementById("answer").value="";
+			if (i>100)
+			{
+				showresult();
+			}
+			num1 = Math.round(Math.random()*5);
+			num2 = Math.round(Math.random()*5);
+			document.getElementById("questionnum").innerHTML = "Question No." + i;
+			document.getElementById("question").innerHTML = num1 + "+" + num2 + "=";
+			document.getElementById("grade").innerHTML = "Score: " + grade;
+			document.getElementById("answer").focus();
+		} 
+
+		function showresult() { 
+			document.write("<h1>Madadd Competition</h1>");
+			document.write("<b>Your Result</b>");
+			document.write("<p><b>Score: " + grade + "</b></P>");
+			document.write("<p><b>Time used: " + m+":"+s+":"+ms + "</b></P>");
+		}
+
+		function mystart() { 
+			i++;
+			today0= new Date();
+			temp0=today0.getTime();
+			document.getElementById("questionnum").innerHTML = "Question No." + i;
+			document.getElementById("question").innerHTML = num1 + "+" + num2 + "=";
+			document.getElementById("grade").innerHTML = "Score: " + grade;
+			element = document.getElementById("start");		
+			element.setAttribute("hidden", "hidden");
+			element = document.getElementById("answer");		
+			element.removeAttribute("hidden");
+			element.focus();
+			element = document.getElementById("submit");		
+			element.removeAttribute("hidden");
+		}
+		function search(event) {
+    			if(event.keyCode  == 13) {
+       			mysubmit();        
+  			}
+		}
+
+	</script> 
+</head> 
+	
+<body> 
+	
+	<!--  -->
+ 
+		<center>
+		<p id="questionnum"></p>
+		<p id="question" style="font-size: 900%;"></p>
+		<input type="button" style="height:200px; width:200px;font-size: 300%;" autofocus id="start" value="Start" onclick="mystart()">
+		<input type="text" id="answer" hidden onkeydown="search(event)">
+		<input type="button" id="submit" value="Submit" onclick="mysubmit()" hidden>
+		<p id="grade"></p>
+		<p id="timer"></p>
+		</center>
+		<p id="record"><img src="gold-trophy-award-png.webp" alt="trophy" height="20">4/30/2024: 86/100 in 19 minutes by Brayden M Adkins, Connor J Lalonde, William G Timothy, and Ross Baer</p>
+		<p id="record"><img src="gold-trophy-award-png.webp" alt="trophy" height="20">4/30/2024: 70/100 in 31 minutes by Kristoff L Bien-Aime and Matthew R Madeira</p>
+		
+		
+		<p id="Rules">Rules:
+		<ol>
+  			<li>The team that completes the 100 questions in the shortest time is the winner.</li>
+  			<li>Human assistance: one time of assistance from team members will add 1 minute to the total time.</li>
+  			<li>If several teams have the same final score (<100), compare the total time.</li>
+			<li>Any score obtained after 30 minutes will not be valid.</li>
+		</ol>
+		</p>
+
+
+</body> 
+
+</html> 
